@@ -1432,6 +1432,279 @@
         height: 300px;
     }
 }
+   @media (max-width: 768px) {
+        .logo-container {
+            gap: 0.8rem;
+        }
+        
+        .logo {
+            width: 45px; /* Logo più piccolo su mobile */
+            height: 45px;
+        }
+        
+        .brand-main {
+            font-size: 1.3rem; /* Titolo più piccolo */
+            line-height: 1.2;
+        }
+        
+        .brand-sub {
+            font-size: 0.6rem; /* Sottotitolo più piccolo */
+            letter-spacing: 1px;
+        }
+        
+        /* Miglioramento spaziatura header */
+        header {
+            padding: 0.8rem 0;
+        }
+        
+        header.scrolled {
+            padding: 0.6rem 0;
+        }
+    }
+
+    /* 2. Miglioramenti per la sezione Serate Passate */
+    .past-events-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .past-event-card {
+        background: rgba(28, 28, 28, 0.7);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(201, 169, 110, 0.15);
+    }
+
+    .past-event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        border-color: rgba(201, 169, 110, 0.3);
+    }
+
+    .past-event-poster {
+        width: 100%;
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+    }
+
+    .past-event-date {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background: rgba(10, 10, 10, 0.8);
+        color: var(--gold-primary);
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        z-index: 2;
+    }
+
+    .past-event-content {
+        padding: 1.5rem;
+    }
+
+    .past-event-title {
+        font-family: 'Playfair Display', serif;
+        color: var(--gold-primary);
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+    }
+
+    .past-event-gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    .past-event-gallery-item {
+        height: 80px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .past-event-gallery-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Responsive per la galleria */
+    @media (max-width: 768px) {
+        .past-events-container {
+            grid-template-columns: 1fr;
+        }
+        
+        .past-event-gallery {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* 3. Miglioramenti generali per mobile */
+    @media (max-width: 480px) {
+        .brand-main {
+            font-size: 1.1rem;
+        }
+        
+        .brand-sub {
+            font-size: 0.55rem;
+        }
+        
+        .logo {
+            width: 40px;
+            height: 40px;
+        }
+    }
+        /* 2. Miglioramenti per la sezione Serate Passate - Layout Orizzontale */
+    .past-events-container {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        margin-top: 2rem;
+    }
+
+    .past-event-card {
+        display: flex;
+        background: rgba(28, 28, 28, 0.7);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(201, 169, 110, 0.15);
+        height: 300px; /* Altezza fissa per tutte le card */
+    }
+
+    .past-event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        border-color: rgba(201, 169, 110, 0.3);
+    }
+
+    .past-event-poster {
+        width: 30%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        flex-shrink: 0;
+    }
+
+    .past-event-date {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background: rgba(10, 10, 10, 0.8);
+        color: var(--gold-primary);
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        z-index: 2;
+    }
+
+    .past-event-content {
+        padding: 1.5rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .past-event-title {
+        font-family: 'Playfair Display', serif;
+        color: var(--gold-primary);
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+    }
+
+    .past-event-description {
+        color: var(--white-platinum);
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
+    }
+
+    .past-event-gallery {
+        display: flex;
+        gap: 0.8rem;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        scrollbar-width: thin;
+        scrollbar-color: var(--gold-primary) rgba(201, 169, 110, 0.1);
+    }
+
+    /* Personalizzazione della scrollbar per WebKit browsers */
+    .past-event-gallery::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .past-event-gallery::-webkit-scrollbar-track {
+        background: rgba(201, 169, 110, 0.1);
+        border-radius: 3px;
+    }
+
+    .past-event-gallery::-webkit-scrollbar-thumb {
+        background: var(--gold-primary);
+        border-radius: 3px;
+    }
+
+    .past-event-gallery-item {
+        width: 120px;
+        height: 120px;
+        flex-shrink: 0;
+        background-size: cover;
+        background-position: center;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+
+    .past-event-gallery-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        border-color: var(--gold-primary);
+    }
+
+    /* Responsive per la galleria */
+    @media (max-width: 968px) {
+        .past-event-card {
+            flex-direction: column;
+            height: auto;
+        }
+        
+        .past-event-poster {
+            width: 100%;
+            height: 200px;
+        }
+        
+        .past-event-gallery {
+            flex-wrap: wrap;
+            overflow-x: visible;
+            justify-content: center;
+        }
+        
+        .past-event-gallery-item {
+            width: 100px;
+            height: 100px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .past-event-gallery-item {
+            width: 80px;
+            height: 80px;
+        }
+        
+        .past-event-title {
+            font-size: 1.2rem;
+        }
+    }
 </style>
 <body>
     <header id="header">
@@ -1646,70 +1919,52 @@
         
         <div id="past" class="events-content">
             <h3 style="text-align: center; margin-bottom: 2rem; color: var(--gold-light);">Rivivi le emozioni delle nostre serate</h3>
-            
-            <div class="past-event-gallery">
-                     <div id="upcoming" class="events-content active">
-            <div class="events-grid">
-                <!-- Evento 1 - Frezza Live -->
-                <div class="event-card">
-                    <div class="event-image " >
-                        <img src="./IMG/locandina.png" alt="Frezza Live" style="width: 100%; height: 100%; object-fit: contain;">
-                        <div class="event-date">13 SETTEMBRE 2025</div>
+              
+                <div class="past-events-container">
+                    <!-- Esempio di serata passata -->
+                    <div class="past-event-card">
+                        <div class="past-event-poster" style="background-image: url('./IMG/locandina.png');">
+                            <div class="past-event-date">13 SETTEMBRE 2025</div>
+                        </div>
+                        <div class="past-event-content">
+                            <h3 class="past-event-title">FREZZA</h3>
+                            <p>Una serata indimenticabile all'insegna della musica e del divertimento.</p>
+                            
+                            <div class="past-event-gallery">
+                                <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 00\ 59\ 09.jpg');" onclick="openGalleryModal(this)"></div>
+                                <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 01\ 43.jpg');" onclick="openGalleryModal(this)"></div>
+                                <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 02\ 37.jpg');" onclick="openGalleryModal(this)"></div>
+                                <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 06\ 08.jpg');" onclick="openGalleryModal(this)"></div>
+                                <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 06\ 12.jpg');" onclick="openGalleryModal(this)"></div>
+                                <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 06\ 40.jpg');" onclick="openGalleryModal(this)"></div>
+                                 <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 10\ 50.jpg');" onclick="openGalleryModal(this)"></div>
+                                <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 11\ 33.jpg');" onclick="openGalleryModal(this)"></div>
+                                <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 16\ 21.jpg');" onclick="openGalleryModal(this)"></div>
+                                <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 19\ 40.jpg');" onclick="openGalleryModal(this)"></div>
+                                <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 20\ 14.jpg');" onclick="openGalleryModal(this)"></div>
+                                <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 22\ 53.jpg');" onclick="openGalleryModal(this)"></div>
+                                 <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 25\ 43.jpg');" onclick="openGalleryModal(this)"></div>
+                                <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 25\ 50.jpg');" onclick="openGalleryModal(this)"></div>
+                                <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 28\ 58.jpg');" onclick="openGalleryModal(this)"></div>
+                                <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 31\ 39.jpg');" onclick="openGalleryModal(this)"></div>
+                                <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 35\ 45.jpg');" onclick="openGalleryModal(this)"></div>
+                                <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 28\ 58.jpg');" onclick="openGalleryModal(this)"></div>
+                                 <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 37\ 37.jpg');" onclick="openGalleryModal(this)"></div>
+                                <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 39\ 04.jpg');" onclick="openGalleryModal(this)"></div>
+                                <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 39\ 30.jpg');" onclick="openGalleryModal(this)"></div>
+                                 <div class="past-event-gallery-item" style="background-image: url('./IMG/Foto\ 14-09-25\,\ 01\ 40\ 26.jpg');" onclick="openGalleryModal(this)"></div>
+                               
+                               
+                               
+                               
+                            </div>
+                        </div>
                     </div>
-                    <div class="event-content">
-                        <h3 class="event-title">Frezza Live at Lime Milano</h3>
-                        <div class="event-details">
-                            <div class="event-detail">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Lime Milano, Via Tullo Massarani, 6</span>
-                            </div>
-                            <div class="event-detail">
-                                <i class="fas fa-clock"></i>
-                                <span>23:30 - 05:00</span>
-                            </div>
-                            <div class="event-detail">
-                                <i class="fas fa-user"></i>
-                                <span>Frezza - Rapper Napoletano</span>
-                            </div>
-                        </div>
-                        <p class="event-description">
-                            Torna in un Lime Milano completamente rinnovato il rapper napoletano voce della vecchia scuola “Frezza”. 
-                            Il 13 Settembre Billion da il via alla nuova stagione con uno degli artisti autore di diverse hit virali, 
-                            il Lime Milano tornerà a far cantare il suo pubblico 🍋‍🟩
-                        </p>
-                        
-                        <div class="event-pricing">
-                            <h4>Modalità d'ingresso:</h4>
-                            <div class="price-option">
-                                <span class="price-type">Prevendita:</span>
-                                <span class="price-value">20€ con drink</span>
-                            </div>
-                            <div class="price-option">
-                                <span class="price-type">Tavolo in pista:</span>
-                                <span class="price-value">40€ a persona (prime 8 prenotazioni 35€)</span>
-                            </div>
-                            <div class="price-option">
-                                <span class="price-type">Tavolo in privé:</span>
-                                <span class="price-value">60€ a persona (prime 4 prenotazioni 50€)</span>
-                            </div>
-                        </div>
-                        <div class="event-pricing">
-                            <h4>Dress Code:</h4>
-                             <p class="event-description">
-                                CONSENTITI: Camicia, polo, dolcevita, maglione elegante, maglia tinta unita nera, jeans lunghi.
-                                Tutto il resto sarà motivo di rimbalzo all’ingresso senza rimborso.<br><br>
-
-                                🌍 Billion
-                             </p>
-                        </div>
-                        
-                        <a href="https://wa.me/393515999848" class="event-button">Prenota Ora</a>
-                    </div>
-                    
                 </div>
             </div>
         </div>
-            </div>
+    </section>
+
         </div>
     </div>
 </section>
@@ -2009,6 +2264,15 @@
     </div>
 
     <script>
+          // Aggiungi questa funzione per gestire l'apertura delle immagini della galleria
+        function openGalleryModal(element) {
+            const modal = document.getElementById('galleryModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImg.src = element.style.backgroundImage.slice(5, -2);
+            document.body.style.overflow = 'hidden';
+        }
+
         // Slideshow functionality
         let currentSlideIndex = 0;
         const slides = document.querySelectorAll('.slide');
