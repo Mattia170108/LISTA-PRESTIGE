@@ -1549,24 +1549,29 @@
     }
 
     /* 3. Miglioramenti generali per mobile */
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
         .brand-main {
             font-size: 1.1rem;
         }
+        .logo-container {
+    gap: 1rem; /* più spazio tra logo e testo */
+  }
         
         .brand-sub {
             font-size: 0.55rem;
         }
         
         .logo {
-            width: 40px;
-            height: 40px;
+           width: 40px;
+    height: 40px;
+    object-fit: contain; /* se è un’immagine */
         }
     }
         /* 2. Miglioramenti per la sezione Serate Passate - Layout Orizzontale */
     .past-events-container {
         display: flex;
         flex-direction: column;
+        grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
         gap: 3rem;
         margin-top: 2rem;
     }
@@ -1578,7 +1583,7 @@
         overflow: hidden;
         transition: all 0.3s ease;
         border: 1px solid rgba(201, 169, 110, 0.15);
-        height: 300px; /* Altezza fissa per tutte le card */
+        height: 750px; /* Altezza fissa per tutte le card */
     }
 
     .past-event-card:hover {
@@ -1630,12 +1635,13 @@
     }
 
     .past-event-gallery {
-        display: flex;
-        gap: 0.8rem;
-        overflow-x: auto;
-        padding-bottom: 0.5rem;
-        scrollbar-width: thin;
-        scrollbar-color: var(--gold-primary) rgba(201, 169, 110, 0.1);
+       display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-primary) rgba(201, 169, 110, 0.1);
+  overflow-x: visible; /* o rimuovere overflow-x */
     }
 
     /* Personalizzazione della scrollbar per WebKit browsers */
@@ -2117,6 +2123,8 @@
                 <p style="margin-top: 0.5rem; color: var(--gold-primary); font-style: italic;">L'Élite del Nightlife Milanese</p>
             </div>
         </div>
+        <div id="visitCounter" style="color: var(--gold-primary); font-weight: bold; margin: 1rem;"></div>
+
     </footer>
 
     <!-- Modal PR -->
@@ -2553,6 +2561,22 @@
             startX = null;
             startY = null;
         });
+        // Contatore visite semplicissimo in localStorage
+window.onload = function() {
+  let visits = localStorage.getItem('siteVisits');
+  if (!visits) {
+    visits = 0;
+  }
+  visits = Number(visits) + 1;
+  localStorage.setItem('siteVisits', visits);
+
+  // Mostra il contatore da qualche parte nel sito, per esempio in un elemento con id 'visitCounter'
+  const counterElement = document.getElementById('visitCounter');
+  if (counterElement) {
+    counterElement.textContent = `Visite al sito: ${visits}`;
+  }
+}
+
     </script>
 </body>
 </html>
