@@ -1709,30 +1709,94 @@
             font-size: 1.2rem;
         }
     }
+    /* Mobile menu */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--gold-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+}
+
+.nav-links.mobile-active {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(135deg, var(--black-secondary) 0%, var(--grey-elegant) 100%);
+    padding: 5rem 2rem 2rem;
+    box-shadow: -5px 0 25px rgba(0,0,0,0.5);
+    z-index: 1000;
+    animation: slideInRight 0.3s ease;
+    border-left: 1px solid rgba(201, 169, 110, 0.3);
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.nav-links.mobile-active li {
+    margin: 0;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+}
+
+.nav-links.mobile-active a {
+    font-size: 1.1rem;
+    display: block;
+    padding: 0.5rem 0;
+}
+
+.mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.8);
+    z-index: 999;
+    backdrop-filter: blur(5px);
+}
+
+.mobile-menu-overlay.active {
+    display: block;
+}
 </style>
 <body>
     <header id="header">
-        <nav class="container">
-            <div class="logo-container" onclick="scrollToSection('home')">
-              
-                <div class="brand-text">
-                    <div class="brand-main">LISTA PRESTIGE</div>
-                    <div class="brand-sub">Elite Nightlife Milano</div>
-                </div>
+    <nav class="container">
+        <div class="logo-container" onclick="scrollToSection('home')">
+            <div class="brand-text">
+                <div class="brand-main">LISTA PRESTIGE</div>
+                <div class="brand-sub">Elite Nightlife Milano</div>
             </div>
-            <ul class="nav-links">
-                <li><a href="#home" onclick="scrollToSection('home')">Home</a></li>
-                <li><a href="#opportunities" onclick="scrollToSection('opportunities')">Opportunità</a></li>
-                <li><a href="#events" onclick="scrollToSection('events')">Serate</a></li>
-                <li><a href="#studio" onclick="scrollToSection('studio')">Studio</a></li>
-                <li><a href="#benefits" onclick="scrollToSection('benefits')">Vantaggi</a></li>
-                <li><a href="#contact" onclick="scrollToSection('contact')">Contatti</a></li>
-            </ul>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
-                <i class="fas fa-bars"></i>
-            </button>
-        </nav>
-    </header>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" onclick="scrollToSection('home')">Home</a></li>
+            <li><a href="#opportunities" onclick="scrollToSection('opportunities')">Opportunità</a></li>
+            <li><a href="#events" onclick="scrollToSection('events')">Serate</a></li>
+            <li><a href="#studio" onclick="scrollToSection('studio')">Studio</a></li>
+            <li><a href="#benefits" onclick="scrollToSection('benefits')">Vantaggi</a></li>
+            <li><a href="#contact" onclick="scrollToSection('contact')">Contatti</a></li>
+        </ul>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+</header>
 
     <section id="home" class="hero">
         <div class="hero-content loading">
@@ -2435,20 +2499,39 @@
 
         // Mobile menu toggle (placeholder)
         function toggleMobileMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        }
+    const navLinks = document.getElementById('navLinks');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const overlay = document.getElementById('mobileMenuOverlay');
+    const icon = mobileMenuBtn.querySelector('i');
+    
+    navLinks.classList.toggle('mobile-active');
+    overlay.classList.toggle('active');
+    document.body.style.overflow = navLinks.classList.contains('mobile-active') ? 'hidden' : 'auto';
+    
+    // Change icon
+    if (navLinks.classList.contains('mobile-active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+    } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    }
+}
 
         // Initialize loading animation
         document.addEventListener('DOMContentLoaded', function() {
-            const loadingElements = document.querySelectorAll('.loading');
-            loadingElements.forEach(element => {
-                element.classList.add('loaded');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        toggleMobileMenu();
+                    }
+                });
             });
+        });
             
             // Initialize slideshow
             showSlide(currentSlideIndex);
-        });
 
         // Intersection Observer for animations
         const observerOptions = {
