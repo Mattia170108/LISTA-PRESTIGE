@@ -1761,6 +1761,21 @@
             font-size: 1.2rem;
         }
     }
+    .nav-links.mobile-active {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 220px;
+    height: 100vh;
+    background: linear-gradient(135deg, var(--black-secondary) 0%, var(--grey-elegant) 100%);
+    padding: 4rem 1.5rem 2rem;
+    box-shadow: -5px 0 25px rgba(0,0,0,0.5);
+    z-index: 1000;
+    animation: slideInRight 0.3s ease;
+    border-left: 1px solid rgba(201, 169, 110, 0.3);
+}
 </style>  
 </head>
 
