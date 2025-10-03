@@ -288,7 +288,7 @@
             height: 300px;
             margin: 0 auto 2rem;
             background-image: url('./IMG/logonuovo.png'); /* Sostituisci con il tuo logo */
-            background-size:14rem;
+            background-size:13rem;
             background-repeat: no-repeat;
             background-position: center;
             filter: drop-shadow(0 0 50px rgba(201, 169, 110, 0.6));
@@ -1761,6 +1761,34 @@
             font-size: 1.2rem;
         }
     }
+    /* Stili per validazione form */
+.form-group input:invalid,
+.form-group select:invalid,
+.form-group textarea:invalid {
+    border-color: rgba(220, 53, 69, 0.5);
+}
+
+
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.form-group.error input,
+.form-group.error select,
+.form-group.error textarea {
+    border-color: #dc3545;
+    animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
     
 </style>  
 </head>
@@ -2206,13 +2234,14 @@
                     </div>
                     <div class="form-group">
                         <label for="prPhone">Instagram *</label>
-                        <input type="url" id="prSocial" name="instagram" placeholder="https://instagram.com/tuoprofilo">
+                        <input type="url" id="prSocial" name="instagram" placeholder="https://instagram.com/tuoprofilo" required>
                     </div>
                     <div class="form-group">
-                        <label for="prCity">Zona Milano</label>
-                        <input type="text" id="prCity" name="city" placeholder="Centro, Navigli, Porta Garibaldi...">
+                        <label for="prCity">Specificare Zona Milano *</label>
+                        <input type="text" id="prCity" name="city" placeholder="centrale, navigli, bisceglie, bicocca..." >
+                        
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" >
                         <label for="prExperience">Esperienza Nightlife</label>
                         <select id="prExperience" name="experience">
                             <option>Nessuna esperienza</option>
@@ -2258,15 +2287,18 @@
                     </div>
                     <div class="form-group">
                         <label for="prPhone">Instagram *</label>
-                        <input type="url" id="prSocial" name="instagram" placeholder="https://instagram.com/tuoprofilo">
+                        <input type="url" id="prSocial" name="instagram" placeholder="https://instagram.com/tuoprofilo" required>
                     </div>
                     <div class="form-group">
-                        <label for="prCity">Zona Milano</label>
-                        <input type="text" id="prCity" name="city" placeholder="Centro, Navigli, Porta Garibaldi...">
+                        <label for="prCity">Specificare Zona Milano *</label>
+                        <input type="text" id="prCity" name="city" placeholder="centrale, navigli, bisceglie, bicocca..." >
+                        
                     </div>
+
+                    
                     <div class="form-group">
                         <label for="imgExperience">Esperienza Modeling</label>
-                        <select id="imgExperience" name="experience">
+                        <select id="imgExperience" name="experience" >
                             <option>Nessuna esperienza</option>
                             <option>Qualche shooting</option>
                             <option>1-2 anni</option>
@@ -2275,6 +2307,7 @@
                     </div>
                     <div class="form-group">
                         <label for="imgAvailability">Disponibilità</label>
+                        
                         <select id="imgAvailability" name="availability">
                             <option>alle serate più importanti</option>
                             <option>2/3 volte al mese</option>
@@ -2285,27 +2318,7 @@
                         <label for="imgHeight">Altezza (cm)</label>
                         <input type="number" id="imgHeight" name="height" min="150" max="200" placeholder="es. 170">
                     </div>
-                    <div class="form-group">
-                        <label for="imgExperience">Esperienza Modeling</label>
-                        <select id="imgExperience" name="experience">
-                            <option>Nessuna esperienza</option>
-                            <option>Qualche shooting</option>
-                            <option>1-2 anni</option>
-                            <option>Oltre 3 anni</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="imgAvailability">Disponibilità</label>
-                        <select id="imgAvailability" name="availability">
-                            <option>Weekend</option>
-                            <option>Infrasettimanale</option>
-                            <option>Sempre disponibile</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="imgSocial">Instagram *</label>
-                    <input type="url" id="imgSocial" name="instagram" placeholder="https://instagram.com/tuoprofilo" required>
+                    
                 </div>
                 <div class="form-group">
                     <label for="imgMotivation">Perché vuoi rappresentare Lista Prestige?</label>
@@ -2458,78 +2471,113 @@
             document.getElementById('galleryModal').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
-
-        // Form submission
         function submitForm(event, type) {
-            event.preventDefault();
-            
-            const form = event.target;
-            const formData = new FormData(form);
-            const data = {};
-            
-            for (let [key, value] of formData.entries()) {
-                data[key] = value;
-            }
-            
-            // Create WhatsApp message
-            const phoneNumber = '393515999848';
-            let message = '';
-            
-            if (type === 'pr') {
-                message = `🧑‍💻 *NUOVA CANDIDATURA PR SPECIALIST*\n\n` +
-                         `👤 *Nome:* ${data.name}\n` +
-                         `🎂 *Età:* ${data.age}\n` +
-                         `📧 *Email:* ${data.email}\n` +
-                         `📱 *Telefono:* ${data.phone}\n` +
-                         `📍 *Zona:* ${data.city || 'Non specificata'}\n` +
-                         `💼 *Esperienza:* ${data.experience}\n` +
-                         `📸 *Instagram:* ${data.instagram || 'Non specificato'}\n` +
-                         `💭 *Motivazione:* ${data.motivation || 'Non specificata'}\n\n` +
-                         `📅 *Data candidatura:* ${new Date().toLocaleDateString('it-IT')}`;
-            } else {
-                message = `💁‍♀️ *NUOVA CANDIDATURA RAGAZZA IMMAGINE*\n\n` +
-                         `👤 *Nome:* ${data.name}\n` +
-                         `🎂 *Età:* ${data.age}\n` +
-                         `📧 *Email:* ${data.email}\n` +
-                         `📱 *Telefono:* ${data.phone}\n` +
-                         `📍 *Zona:* ${data.city || 'Non specificata'}\n` +
-                         `📏 *Altezza:* ${data.height ? data.height + ' cm' : 'Non specificata'}\n` +
-                         `💼 *Esperienza:* ${data.experience}\n` +
-                         `⏰ *Disponibilità:* ${data.availability}\n` +
-                         `📸 *Instagram:* ${data.instagram}\n` +
-                         `💭 *Motivazione:* ${data.motivation || 'Non specificata'}\n\n` +
-                         `📅 *Data candidatura:* ${new Date().toLocaleDateString('it-IT')}`;
-            }
-            
-            // Encode message for URL
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-            
-            const submitButton = form.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
-            
-            submitButton.textContent = 'Apertura WhatsApp...';
-            submitButton.disabled = true;
-            
-            setTimeout(() => {
-                // Open WhatsApp
-                window.open(whatsappURL, '_blank');
+    event.preventDefault();
+    
+    const form = event.target;
+    
+    // Verifica validità form
+    if (!form.checkValidity()) {
+        // Trova tutti i campi invalidi
+        const invalidFields = form.querySelectorAll(':invalid');
+        
+        // Rimuovi errori precedenti
+        form.querySelectorAll('.form-group').forEach(group => {
+            group.classList.remove('error');
+        });
+        
+        // Aggiungi classe error ai campi invalidi
+        invalidFields.forEach(field => {
+            const formGroup = field.closest('.form-group');
+            if (formGroup) {
+                formGroup.classList.add('error');
                 
-                submitButton.textContent = 'Candidatura Inviata! ✓';
-                submitButton.style.background = '#4CAF50';
-                
-                setTimeout(() => {
-                    closeModal(type === 'pr' ? 'prModal' : 'imageModal');
-                    form.reset();
-                    submitButton.textContent = originalText;
-                    submitButton.disabled = false;
-                    submitButton.style.background = '';
-                    
-                    // Show success message
-                    alert('Ti abbiamo reindirizzato su WhatsApp. Invia il messaggio per completare la candidatura!');
-                }, 2000);
-            }, 500);
+                // Mostra il messaggio di validazione del browser in italiano
+                if (field.validity.valueMissing) {
+                    field.setCustomValidity('⚠️ Questo campo è obbligatorio');
+                } else if (field.validity.typeMismatch) {
+                    field.setCustomValidity('⚠️ Inserisci un formato valido');
+                } else {
+                    field.setCustomValidity('⚠️ Valore non valido');
+                }
+                field.reportValidity();
+            }
+        });
+        
+        // Focus sul primo campo invalido
+        if (invalidFields[0]) {
+            invalidFields[0].focus();
         }
+        
+        return false;
+    }
+    
+    // Reset custom validity
+    form.querySelectorAll('input, select, textarea').forEach(field => {
+        field.setCustomValidity('');
+    });
+    
+    const formData = new FormData(form);
+    const data = {};
+    
+    for (let [key, value] of formData.entries()) {
+        data[key] = value;
+    }
+    
+    // Create WhatsApp message
+    const phoneNumber = '393515999848';
+    let message = '';
+    
+    if (type === 'pr') {
+        message = `🧑‍💻 *NUOVA CANDIDATURA PR SPECIALIST*\n\n` +
+                 `👤 *Nome:* ${data.name}\n` +
+                 `📛 *Cognome:* ${data.cognome}\n` +
+                 `🎂 *Età:* ${data.age}\n` +
+                 `📍 *Zona:* ${data.city}\n` +
+                 `💼 *Esperienza:* ${data.experience}\n` +
+                 `📸 *Instagram:* ${data.instagram}\n` +
+                 `💭 *Motivazione:* ${data.motivation || 'Non specificata'}\n\n` +
+                 `📅 *Data candidatura:* ${new Date().toLocaleDateString('it-IT')}`;
+    } else {
+        message = `💁‍♀️ *NUOVA CANDIDATURA RAGAZZA IMMAGINE*\n\n` +
+                 `👤 *Nome:* ${data.name}\n` +
+                 `📛 *Cognome:* ${data.cognome}\n` +
+                 `🎂 *Età:* ${data.age}\n` +
+                 `📍 *Zona:* ${data.city}\n` +
+                 `📏 *Altezza:* ${data.height ? data.height + ' cm' : 'Non specificata'}\n` +
+                 `💼 *Esperienza:* ${data.experience}\n` +
+                 `⏰ *Disponibilità:* ${data.availability}\n` +
+                 `📸 *Instagram:* ${data.instagram}\n` +
+                 `💭 *Motivazione:* ${data.motivation || 'Non specificata'}\n\n` +
+                 `📅 *Data candidatura:* ${new Date().toLocaleDateString('it-IT')}`;
+    }
+    
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalText = submitButton.textContent;
+    
+    submitButton.textContent = 'Apertura WhatsApp...';
+    submitButton.disabled = true;
+    
+    setTimeout(() => {
+        window.open(whatsappURL, '_blank');
+        
+        submitButton.textContent = 'Candidatura Inviata! ✓';
+        submitButton.style.background = '#4CAF50';
+        
+        setTimeout(() => {
+            closeModal(type === 'pr' ? 'prModal' : 'imageModal');
+            form.reset();
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+            submitButton.style.background = '';
+            
+            alert('Ti abbiamo reindirizzato su WhatsApp. Invia il messaggio per completare la candidatura!');
+        }, 2000);
+    }, 500);
+}
 
         // Mobile menu toggle (placeholder)
         function toggleMobileMenu() {
@@ -2654,7 +2702,21 @@ window.onload = function() {
     counterElement.textContent = `Visite al sito: ${visits}`;
   }
 }
-
+// Aggiungi alla fine dello script, prima della chiusura del tag script
+document.addEventListener('DOMContentLoaded', function() {
+    // ... codice esistente ...
+    
+    // Reset validazione quando l'utente digita
+    document.querySelectorAll('input, select, textarea').forEach(field => {
+        field.addEventListener('input', function() {
+            this.setCustomValidity('');
+            const formGroup = this.closest('.form-group');
+            if (formGroup) {
+                formGroup.classList.remove('error');
+            }
+        });
+    });
+});
     </script>
 </body>
 </html>

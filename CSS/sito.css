@@ -1,4 +1,4 @@
-* {
+   * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -45,8 +45,8 @@
         /* Enhanced Header */
         header {
             background: 
-                url('../IMG/IMG_6740-removebg-preview.png');
-            background-size: 100px auto;
+                url('./IMG/IMG_6740-removebg-preview.png');
+            background-size: 80px auto;
             background-position: top left ;
             background-repeat: no-repeat;
             background-attachment: scroll;
@@ -63,7 +63,7 @@
         header.scrolled {
             padding: 0.8rem 0;
             background: 
-                url('../IMG/IMG_6740-removebg-preview.png');
+                url('./IMG/IMG_6740-removebg-preview.png');
             background-size: 80px auto;
             background-position: top left;
             background-repeat: no-repeat;
@@ -161,16 +161,70 @@
             width: 100%;
         }
 
-        /* Mobile menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--gold-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
+       /* Mobile menu */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--gold-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+}
+
+.nav-links.mobile-active {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 220px;
+    height: 100vh;
+    background: linear-gradient(135deg, var(--black-secondary) 0%, var(--grey-elegant) 100%);
+    padding: 4rem 1.5rem 2rem;
+    box-shadow: -5px 0 25px rgba(0,0,0,0.5);
+    z-index: 1000;
+    animation: slideInRight 0.3s ease;
+    border-left: 1px solid rgba(201, 169, 110, 0.3);
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.nav-links.mobile-active li {
+    margin: 0;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+}
+
+.nav-links.mobile-active a {
+    font-size: 1.1rem;
+    display: block;
+    padding: 0.5rem 0;
+}
+
+.mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.8);
+    z-index: 999;
+    backdrop-filter: blur(5px);
+}
+
+.mobile-menu-overlay.active {
+    display: block;
+}
 
         /* Hero Section Enhanced */
         .hero {
@@ -222,11 +276,11 @@
         }
 
         .hero-logo {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 4rem;
-            background-image: url('../IMG/image-removebg-preview.png'); /* Sostituisci con il tuo logo */
-            background-size:15rem;
+            width: 400px;
+            height: 300px;
+            margin: 0 auto 2rem;
+            background-image: url('./IMG/logonuovo.png'); /* Sostituisci con il tuo logo */
+            background-size:13rem;
             background-repeat: no-repeat;
             background-position: center;
             filter: drop-shadow(0 0 50px rgba(201, 169, 110, 0.6));
@@ -1421,4 +1475,313 @@
     .event-image.event-poster {
         height: 300px;
     }
+}
+   @media (max-width: 768px) {
+        .logo-container {
+            gap: 0.8rem;
+            margin-left: 75px; /* Sposta il logo più a destra su mobile */
+        }
+        
+        .logo {
+            width: 45px; /* Logo più piccolo su mobile */
+            height: 45px;
+        }
+        
+        .brand-main {
+            font-size: 1.3rem; /* Titolo più piccolo */
+            line-height: 1.2;
+        }
+        
+        .brand-sub {
+            font-size: 0.6rem; /* Sottotitolo più piccolo */
+            letter-spacing: 1px;
+        }
+        
+        /* Miglioramento spaziatura header */
+        header {
+            padding: 0.8rem 0;
+        }
+        
+        header.scrolled {
+            padding: 0.6rem 0;
+        }
+    }
+
+    /* 2. Miglioramenti per la sezione Serate Passate */
+    .past-events-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .past-event-card {
+        background: rgba(28, 28, 28, 0.7);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(201, 169, 110, 0.15);
+    }
+
+    .past-event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        border-color: rgba(201, 169, 110, 0.3);
+    }
+
+    .past-event-poster {
+        width: 100%;
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+    }
+
+    .past-event-date {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background: rgba(10, 10, 10, 0.8);
+        color: var(--gold-primary);
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        z-index: 2;
+    }
+
+    .past-event-content {
+        padding: 1.5rem;
+    }
+
+    .past-event-title {
+        font-family: 'Playfair Display', serif;
+        color: var(--gold-primary);
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+    }
+
+    .past-event-gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    .past-event-gallery-item {
+        height: 80px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .past-event-gallery-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Responsive per la galleria */
+    @media (max-width: 768px) {
+        .past-events-container {
+            grid-template-columns: 1fr;
+        }
+        
+        .past-event-gallery {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* 3. Miglioramenti generali per mobile */
+    @media (max-width: 768px) {
+        .brand-main {
+            font-size: 1.1rem;
+        }
+        
+        .brand-sub {
+            font-size: 0.55rem;
+        }
+        
+        .logo {
+           width: 40px;
+    height: 40px;
+    object-fit: contain; /* se è un’immagine */
+        }
+    }
+        /* 2. Miglioramenti per la sezione Serate Passate - Layout Orizzontale */
+    .past-events-container {
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+        gap: 3rem;
+        margin-top: 2rem;
+    }
+
+    .past-event-card {
+        display: flex;
+        background: rgba(28, 28, 28, 0.7);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(201, 169, 110, 0.15);
+        height: 750px; /* Altezza fissa per tutte le card */
+    }
+
+    .past-event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        border-color: rgba(201, 169, 110, 0.3);
+    }
+
+    .past-event-poster {
+        width: 30%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        flex-shrink: 0;
+    }
+
+    .past-event-date {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background: rgba(10, 10, 10, 0.8);
+        color: var(--gold-primary);
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        z-index: 2;
+    }
+
+    .past-event-content {
+        padding: 1.5rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .past-event-title {
+        font-family: 'Playfair Display', serif;
+        color: var(--gold-primary);
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+    }
+
+    .past-event-description {
+        color: var(--white-platinum);
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
+    }
+
+    .past-event-gallery {
+       display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-primary) rgba(201, 169, 110, 0.1);
+  overflow-x: visible; /* o rimuovere overflow-x */
+    }
+
+    /* Personalizzazione della scrollbar per WebKit browsers */
+    .past-event-gallery::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .past-event-gallery::-webkit-scrollbar-track {
+        background: rgba(201, 169, 110, 0.1);
+        border-radius: 3px;
+    }
+
+    .past-event-gallery::-webkit-scrollbar-thumb {
+        background: var(--gold-primary);
+        border-radius: 3px;
+    }
+
+    .past-event-gallery-item {
+        width: 120px;
+        height: 120px;
+        flex-shrink: 0;
+        background-size: cover;
+        background-position: center;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+
+    .past-event-gallery-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        border-color: var(--gold-primary);
+    }
+
+    /* Responsive per la galleria */
+    @media (max-width: 968px) {
+        .past-event-card {
+            flex-direction: column;
+            height: auto;
+        }
+        
+        .past-event-poster {
+            width: 100%;
+            height: 200px;
+        }
+        
+        .past-event-gallery {
+            flex-wrap: wrap;
+            overflow-x: visible;
+            justify-content: center;
+        }
+        
+        .past-event-gallery-item {
+            width: 100px;
+            height: 100px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .past-event-gallery-item {
+            width: 80px;
+            height: 80px;
+        }
+        
+        .past-event-title {
+            font-size: 1.2rem;
+        }
+    }
+    /* Stili per validazione form */
+.form-group input:invalid,
+.form-group select:invalid,
+.form-group textarea:invalid {
+    border-color: rgba(220, 53, 69, 0.5);
+}
+
+.form-group input:valid,
+.form-group select:valid,
+.form-group textarea:valid {
+    border-color: rgba(201, 169, 110, 0.3);
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.form-group.error input,
+.form-group.error select,
+.form-group.error textarea {
+    border-color: #dc3545;
+    animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
 }
