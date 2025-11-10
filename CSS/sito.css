@@ -44,12 +44,12 @@
 
         /* Enhanced Header */
         header {
-            background: 
-                url('./IMG/IMG_6740-removebg-preview.png');
+            /* background: 
+                url('../IMG/IMG_6740-removebg-preview.png');
             background-size: 80px auto;
             background-position: top left ;
             background-repeat: no-repeat;
-            background-attachment: scroll;
+            background-attachment: scroll; */
             backdrop-filter: blur(25px);
             position: fixed;
             width: 100%;
@@ -288,7 +288,7 @@
             animation: glow 3s ease-in-out infinite alternate;
             position: relative;
             z-index: 3;
-            margin-top: 50px;
+            margin-top: 100px;
         }
 
 
@@ -296,6 +296,11 @@
             .hero-logo {
                 margin-top: 220px;
                 background-size: 30rem;
+            }
+
+            .brand-img {
+                width: 60px;
+                height: 60px;
             }
         }
 
@@ -1280,7 +1285,7 @@
         }
 
         /* Mobile Responsiveness */
-        @media (max-width: 768px) {
+        @media (max-width: 930px) {
             .container {
                 padding: 0 1rem;
             }
@@ -1487,10 +1492,7 @@
     }
 }
    @media (max-width: 768px) {
-        .logo-container {
-            gap: 0.8rem;
-            margin-left: 75px; /* Sposta il logo più a destra su mobile */
-        }
+
         
         .logo {
             width: 45px; /* Logo più piccolo su mobile */
